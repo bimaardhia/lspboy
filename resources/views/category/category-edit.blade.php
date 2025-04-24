@@ -4,7 +4,7 @@
     <div class="container">
         <div class="mt-5">
 
-            <h2 class="mb-5">Edit Category : {{ $category->category_name }}</h2>
+            <h2 class="mb-5">Edit Category: {{ $category->category_name }}</h2>
 
             @if ($errors->any())
                 <div class="alert alert-danger col-md-6">
