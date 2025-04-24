@@ -1,5 +1,4 @@
 @extends('layouts.app')
-{{-- {{ dd($chartLabels, $chartValues); }} --}}
 @section('content')
 <div class="container">
     <h1 class="mt-5 text-center">Dashboard</h1>
@@ -8,11 +7,12 @@
         <div class="col-md-6">
             <div class="card text-bg-primary mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Total Transactions</h5>
-                    <p class="card-text fs-3">{{ $totalTransactions }}</p>
+                    <h5 class="card-title">Today's Transaction Insights</h5> <!-- Judul diubah -->
+                    <p class="card-text fs-3">{{ $todayTransactions }}</p> <!-- Menampilkan jumlah transaksi hari ini -->
                 </div>
             </div>
         </div>
+
         <div class="col-md-6">
             <div class="card text-bg-success mb-3">
                 <div class="card-body">
