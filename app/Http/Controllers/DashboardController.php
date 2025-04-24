@@ -17,17 +17,25 @@ class DashboardController extends Controller
 
         // Grafik 7 hari terakhir
         $chartData = Transaction::select(
-            DB::raw('DATE(created_at) as date'),
-            DB::raw('SUM(total) as total')
-        )
-        ->where('created_at', '>=', now()->subDays(6))
-        ->groupBy(DB::raw('DATE(created_at)'))
-        ->orderBy('date')
-        ->get();
+                DB::raw('DATE(created_at) as date'),
+                DB::raw('SUM(total) as total')
+            )
+            ->where('created_at', '>=', now()->subDays(6))
+            ->groupBy(DB::raw('DATE(created_at)'))
+            ->orderBy('date')
+            ->get();
+
+        // Process the data for Chart.js
+        $chartLabels = $chartData->pluck('date')->toArray();
+        $chartValues = $chartData->pluck('total')->map(function($value) {
+            return floatval($value); // Convert the string to a float
+        })->toArray();
 
         // 5 Transaksi terakhir
         $latestTransactions = Transaction::latest()->take(5)->get();
 
-        return view('dashboard.index', compact('totalTransactions', 'todayRevenue', 'chartData', 'latestTransactions'));
+        return view('dashboard.index', compact('totalTransactions', 'todayRevenue', 'chartLabels', 'chartValues', 'latestTransactions'));
     }
+
+
 }

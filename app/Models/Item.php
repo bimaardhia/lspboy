@@ -22,4 +22,9 @@ class Item extends Model
     {
         return $this->hasMany(CartItem::class);
     }
+
+    public function transactionDetails()
+    {
+        return $this->hasMany(TransactionDetail::class);
+    }
 }

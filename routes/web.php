@@ -9,7 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransactionController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard.welcome');
 });
 
 Auth::routes();

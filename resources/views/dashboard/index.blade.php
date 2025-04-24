@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+{{-- {{ dd($chartLabels, $chartValues); }} --}}
 @section('content')
 <div class="container">
     <h1 class="mt-5 text-center">Dashboard</h1>
@@ -27,13 +27,13 @@
     <div class="card mb-4">
         <div class="card-body">
             <h5 class="card-title">Revenue (Last 7 Days)</h5>
-            <canvas id="transactionChart"></canvas>
+            <canvas id="transactionChart" height="50"></canvas>
         </div>
     </div>
 
     {{-- 5 transaksi terakhir --}}
     <div class="card mb-5">
-        <div class="card-body">
+        <div class="card-body" >
             <h5 class="card-title">Latest Transactions</h5>
             <table class="table table-hover">
                 <thead>
@@ -65,10 +65,10 @@
     const chart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: {!! json_encode($chartData->pluck('date')) !!},
+            labels: {!! json_encode($chartLabels) !!},  // Use chartLabels
             datasets: [{
                 label: 'Revenue',
-                data: {!! json_encode($chartData->pluck('total')) !!},
+                data: {!! json_encode($chartValues) !!},  // Use chartValues
                 borderColor: 'rgba(75, 192, 192, 1)',
                 fill: false,
                 tension: 0.3
@@ -76,4 +76,5 @@
         }
     });
 </script>
+
 @endpush
