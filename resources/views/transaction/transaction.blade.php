@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="mt-3">
-                    <h3>Total : {{ number_format($cart_items->sum(function($item) { return $item->quantity * $item->item->price; }), 2) }}</h3>
+                    <h3>Total: {{ number_format($cart_items->sum(function($item) { return $item->quantity * $item->item->price; }), 2) }}</h3>
                     <a href="{{ url('/transaction/checkout') }}" class="btn btn-success">Proceed to Checkout</a>
                 </div>
             </div>

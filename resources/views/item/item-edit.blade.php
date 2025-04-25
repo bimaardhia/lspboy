@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="mt-5">
-            <h2 class="mb-5">Edit Item : {{ $item->item_name }}</h2>
+            <h2 class="mb-5">Edit Item: {{ $item->item_name }}</h2>
 
             @if ($errors->any())
                 <div class="alert alert-danger col-md-6">
