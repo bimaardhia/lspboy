@@ -27,7 +27,7 @@
 
                         <input type="number" name="quantity" min="1" class="form-control mx-2" style="width: 80px;" required placeholder="Quantity">
 
-                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
                     </div>
                 </form>
             </div>
