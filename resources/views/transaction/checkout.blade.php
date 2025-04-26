@@ -41,7 +41,8 @@
                 @csrf
                 <div class="mb-3">
                     <label for="paid_amount" class="form-label">Amount Received (Rp)</label>
-                    <input type="number" name="paid_amount" id="paid_amount" class="form-control" required min="{{ $total }}">
+                    <input type="number" name="paid_amount" id="paid_amount" class="form-control" required">
+                    <input type="hidden" name="total" value="{{ $total }}">
                 </div>
                 <button type="submit" class="btn btn-success">Pay & Finish</button>
             </form>

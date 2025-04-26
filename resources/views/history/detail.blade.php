@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <div class="container mt-5">
     @if (Session::has('message'))
         <p class="alert alert-{{ Session::get('message_type', 'info') }}">{{ Session::get('message') }}</p>
@@ -47,7 +49,24 @@
                 </li>
             </ul>
 
-            <a href="{{ url('/transaction') }}" class="btn btn-primary mt-3">Back to Cart</a>
+            <a href="{{ url('/transaction') }}" id="backToCartBtn" class="btn btn-primary mt-3">Back to Cart</a>
+            <button id="printReceipt" class="btn btn-secondary mt-3">Print Receipt</button>
+            <script>
+                document.getElementById('printReceipt').addEventListener('click', function() {
+                    // Menyembunyikan navbar, tombol "Print Receipt", dan tombol "Back to Cart" sebelum cetak
+                    document.querySelector('nav').style.display = 'none';  // Menyembunyikan navbar
+                    document.querySelector('#printReceipt').style.display = 'none'; // Menyembunyikan tombol "Print Receipt"
+                    document.querySelector('#backToCartBtn').style.display = 'none'; // Menyembunyikan tombol "Back to Cart"
+
+                    // Menampilkan dialog print
+                    window.print();
+
+                    // Setelah cetak, kembalikan tampilan navbar dan tombol
+                    document.querySelector('nav').style.display = '';  // Menampilkan kembali navbar
+                    document.querySelector('#printReceipt').style.display = ''; // Menampilkan kembali tombol "Print Receipt"
+                    document.querySelector('#backToCartBtn').style.display = ''; // Menampilkan kembali tombol "Back to Cart"
+                });
+            </script>
         </div>
     </div>
 </div>
