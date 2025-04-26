@@ -14,16 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@email.com',
+            'password' => Hash::make('12341234'),
+        ]);
+        
         $this->call([
             CategoryItemSeeder::class,
             CartItemSeeder::class,
             TransactionSeeder::class,
         ]);
 
-        User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@email.com',
-            'password' => Hash::make('12341234'),
-        ]);
     }
 }

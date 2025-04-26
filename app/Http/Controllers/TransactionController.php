@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Session;
 
 class TransactionController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
     public function indexCart()
     {
@@ -120,12 +125,17 @@ class TransactionController extends Controller
             return redirect()->back()->with('message', 'Insufficient amount')->with('message_type', 'danger');
         }
 
+        /** @var \App\Models\User $user */
+
         // Langsung eksekusi tanpa DB::beginTransaction
         $transaction = Transaction::create([
+            'user_id' => auth()->id(),
             'total' => $total,
             'paid_amount' => $paid,
             'change' => $paid - $total,
         ]);
+
+        // dd($transaction);
 
         foreach ($cartItems as $cartItem) {
             TransactionDetail::create([

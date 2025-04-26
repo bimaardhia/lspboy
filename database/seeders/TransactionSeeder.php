@@ -7,6 +7,7 @@ use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use App\Models\Item;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class TransactionSeeder extends Seeder
 {
@@ -23,7 +24,9 @@ class TransactionSeeder extends Seeder
             return;
         }
 
-        Transaction::factory()->count(50)->create()->each(function ($transaction) use ($validItems) {
+        $user = User::inRandomOrder()->first(); // Ambil 1 user secara acak
+
+        Transaction::factory()->count(50)->create(['user_id' => $user->id])->each(function ($transaction) use ($validItems) {
             $total = 0;
 
             // Ambil 1–5 item acak dari item valid
@@ -36,7 +39,7 @@ class TransactionSeeder extends Seeder
                 TransactionDetail::create([
                     'transaction_id' => $transaction->id,
                     'item_id'        => $item->id,
-                    'item_name'      => $item->item_name, // Sudah pasti tidak null
+                    'item_name'      => $item->item_name, 
                     'quantity'       => $qty,
                     'price'          => $item->price,
                     'subtotal'       => $subtotal,

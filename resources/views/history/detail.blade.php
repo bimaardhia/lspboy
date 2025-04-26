@@ -11,7 +11,7 @@
         <div class="card-body">
             <h5>Transaction ID: #{{ $transaction->id }}</h5>
             <p><strong>Date:</strong> {{ $transaction->created_at->format('d M Y H:i') }}</p>
-
+            <p><strong>Customer:</strong> {{ $transaction->user->name }}</p>
             <ul class="list-group mb-3">
                 <!-- Header -->
                 <li class="list-group-item bg-light fw-bold">

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('transaction_id')->constrained()->onDelete('cascade');
             $table->foreignId('item_id')->nullable()->constrained()->onDelete('set null');
-
             $table->string('item_name'); 
             $table->integer('quantity');
             $table->decimal('price', 12, 2);

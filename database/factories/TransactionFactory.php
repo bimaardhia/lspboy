@@ -14,7 +14,7 @@ class TransactionFactory extends Factory
             'total' => $total,
             'paid_amount' => $paid,
             'change' => $paid - $total,
-            'created_at' => now()->subDays(rand(0, 6))->setTime(rand(8, 20), rand(0, 59)),
+            'created_at' => now()->subDays(rand(1, 6))->setTime(rand(8, 20), rand(0, 59)),
             'updated_at' => now()
         ];
     }

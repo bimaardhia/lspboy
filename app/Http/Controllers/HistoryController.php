@@ -16,7 +16,7 @@ class HistoryController extends Controller
 
     public function show($id)
     {
-        $transaction = Transaction::with('details')->findOrFail($id);
+        $transaction = Transaction::with(['details', 'user'])->findOrFail($id);
         return view('history.detail', compact('transaction'));
     }
 }
